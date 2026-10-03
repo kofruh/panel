@@ -18,7 +18,7 @@
 
 ## نکته مهم Railway
 
-این پروژه از Dockerfile ریشه استفاده می‌کند و برای پنل مدیریت مناسب است.
+این پروژه از Dockerfile ریشه استفاده می‌کند. Dockerfile از ایمیج رسمی 3X-UI v2.9.0 استفاده می‌کند و Python را برای داشبورد vpnstan به‌صورت صریح نصب می‌کند.
 برای ماندگاری دیتابیس `/etc/x-ui` یک Railway Volume با همین Mount Path اضافه کن.
 
 اما «فقط ساختن دامنه» به تنهایی تضمین نمی‌کند کانفیگ VPN از اینترنت کار کند.
@@ -36,7 +36,7 @@
 2. Railway → New Project → Deploy from GitHub Repo.
 3. Repository `vpnstan` را انتخاب کن.
 4. Railway باید `Dockerfile` ریشه را تشخیص دهد.
-5. در Settings → Networking یک Domain بساز.
+5. در Settings → Networking یک Domain بساز. Railway هنگام اجرای سرویس، متغیر `PORT` را در اختیار برنامه قرار می‌دهد.
 6. در Settings → Volumes یک Volume با Mount Path `/etc/x-ui` بساز.
 7. دامنه را باز کن.
 

@@ -1,11 +1,11 @@
 #!/bin/sh
 set -eu
 
-# 3X-UI is the VPN management/backend service.
-# The public web dashboard is served by the same container.
+# Start the official 3X-UI service.
+# Its database remains under /etc/x-ui.
 x-ui >/tmp/x-ui.log 2>&1 &
 
-# Wait briefly for the local 3X-UI API.
+# Wait for the local 3X-UI web/API service.
 i=0
 while [ "$i" -lt 45 ]; do
   if wget -q -O /dev/null "http://127.0.0.1:2053/" 2>/dev/null; then
@@ -15,4 +15,5 @@ while [ "$i" -lt 45 ]; do
   sleep 1
 done
 
+# Railway supplies PORT at runtime. The dashboard listens on it.
 exec python3 /opt/vpnstan/web/server.py
